@@ -91,14 +91,32 @@
       console.table(ordered);
       // Array.prototype.reduce()
       // 4. How many years did all the inventors live all together?
-
+      const allYears = inventors.reduce((total, current) => {
+        return total + (current.passed - current.year);
+      }, 0);
+      console.log(allYears);
       // 5. Sort the inventors by years lived
-
-      // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
+      const yearsLived = inventors.sort((a, b) =>
+        a.passed - a.year > b.passed - b.year ? -1 : 1
+      );
+      console.log(yearsLived);
+      // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name !!! enter 'em' in dev console in website below
       // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
+
+      // const category = document.querySelector(".mw-category");
+      // const links = Array.from(category.querySelectorAll("a")); // to convert Nodes to array to be able using .map
+      // const de = links
+      //   .map((item) => item.textContent)
+      //   .filter((name) => name.includes("de"));
 
       // 7. sort Exercise
       // Sort the people alphabetically by last name
+      const sortedPeople = people.sort((a, b) => {
+        const [alast, afirst] = a.split(", ");
+        const [blast, bfirst] = b.split(", ");
+        return alast.localeCompare() > blast.localeCompare() ? 1 : -1;
+      });
+      console.log(sortedPeople);
 
       // 8. Reduce Exercise
       // Sum up the instances of each of these
@@ -118,6 +136,16 @@
         "car",
         "truck",
       ];
+      // در کد زیر در شرط اول اگر عنصر در هر شمارش در حلقه نباشه یه مقدار صفر بهش میده و بعد در خط بعد یه 1 بهش اضافه میکنه پس در واقع شرط از اول و برای همه اجرا میشه و حتی اگر تکراری نباشن هم یدونه 1 میگیرن.
+      const result = data.reduce((objects, current) => {
+        if (!objects[current]) {
+          objects[current] = 0;
+        }
+        objects[current]++;
+
+        return objects;
+      }, {}); // we create an object here to store array and their numbers together.
+      console.log(result);
     </script>
   </body>
 </html>
